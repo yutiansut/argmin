@@ -79,7 +79,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! argmin = "0.3.1"
+//! argmin = "0.4.1"
 //! ```
 //!
 //! ## Optional features (recommended)
@@ -88,7 +88,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! argmin = { version = "0.3.1", features = ["ctrlc", "ndarrayl"] }
+//! argmin = { version = "0.4.1", features = ["ctrlc", "ndarrayl", "nalgebral"] }
 //! ```
 //!
 //! These may become default features in the future. Without these features compilation to
@@ -97,10 +97,11 @@
 //! - `ctrlc`: Uses the `ctrlc` crate to properly stop the optimization (and return the current best
 //!    result) after pressing Ctrl+C.
 //! - `ndarrayl`: Support for `ndarray`, `ndarray-linalg` and `ndarray-rand`.
+//! - `nalgebral`: Support for `nalgebra`.
 //!
 //! ## Running the tests
 //!
-//! Running the tests requires the `ndarrayl` feature to be enabled:
+//! Running the tests requires the `ndarrayl` and feature to be enabled:
 //!
 //! ```bash
 //! cargo test --features "ndarrayl"
@@ -188,6 +189,7 @@
 //! use argmin::solver::gradientdescent::SteepestDescent;
 //! use argmin::solver::linesearch::MoreThuenteLineSearch;
 //! # use argmin_testfunctions::{rosenbrock_2d, rosenbrock_2d_derivative};
+//! # use instant;
 //! #
 //! # struct Rosenbrock {
 //! #     a: f64,
@@ -234,7 +236,7 @@
 //!     .run()?;
 //! #
 //! #     // Wait a second (lets the logger flush everything first)
-//! #     std::thread::sleep(std::time::Duration::from_secs(1));
+//! #     std::thread::sleep(instant::Duration::from_secs(1));
 //!  
 //! // print result
 //! println!("{}", res);
@@ -352,6 +354,7 @@
 //! # use argmin::solver::landweber::*;
 //! # use argmin_testfunctions::{rosenbrock_2d, rosenbrock_2d_derivative};
 //! # use argmin::core::Error;
+//! # use instant;
 //! #
 //! # #[derive(Default)]
 //! # struct Rosenbrock {}
@@ -388,7 +391,7 @@
 //!     .run()?;
 //! #
 //! #     // Wait a second (lets the logger flush everything before printing to screen again)
-//! #     std::thread::sleep(std::time::Duration::from_secs(1));
+//! #     std::thread::sleep(instant::Duration::from_secs(1));
 //! #     println!("{}", res);
 //! #     Ok(())
 //! # }

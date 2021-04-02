@@ -1,6 +1,6 @@
 [package]
 name = "argmin"
-version = "0.3.1"
+version = "0.4.1"
 authors = ["Stefan Kroboth <stefan.kroboth@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
@@ -21,16 +21,17 @@ anyhow = "1.0"
 approx = "0.4.0"
 bincode = "1.1.4"
 ctrlc = { version = "3.1.2", optional = true }
+instant = {version = "0.1", features = ["now"] }
 gnuplot = { version = "0.0.37", optional = true}
 paste = "1.0.0"
-nalgebra = { version = "0.22.0", optional = true, features = ["serde-serialize"] }
-ndarray = { version = "0.13", optional = true, features = ["serde-1"] }
-ndarray-linalg = { version = "0.12", optional = true }
-ndarray-rand = {version = "0.12.0", optional = true }
-num = { version = "0.3" }
-num-complex = "0.2"
-rand = { version = "0.7.2", features = ["serde1"] }
-rand_xorshift = { version = "0.2.0", features = ["serde1"] }
+nalgebra = { version = "0.25.0", optional = true, features = ["serde-serialize"] }
+ndarray = { version = "0.14", optional = true, features = ["serde-1"] }
+ndarray-linalg = { version = "0.13", optional = true }
+ndarray-rand = {version = "0.14.0", optional = true }
+num = { version = "0.4" }
+num-complex = "0.3"
+rand = { version = "0.8.3", features = ["serde1"] }
+rand_xorshift = { version = "0.3.0", features = ["serde1"] }
 serde = { version = "1.0", features = ["derive", "rc"] }
 serde_json = "1.0"
 slog = "2.4.1"
@@ -40,8 +41,8 @@ slog-json = "2.3.0"
 thiserror = "1.0"
 
 [dev-dependencies]
-ndarray-linalg = { version = "0.12", features = ["openblas"] }
-finitediff = { version = "0.1.2", features = ["ndarray"] }
+ndarray-linalg = { version = "0.13", features = ["openblas"] }
+finitediff = { version = "0.1.3", features = ["ndarray"] }
 argmin_testfunctions = "0.1.1"
 
 [features]
@@ -49,6 +50,8 @@ default = []
 nalgebral = ["nalgebra"]
 ndarrayl = ["ndarray", "ndarray-linalg", "ndarray-rand"]
 visualizer = ["gnuplot"]
+wasm-bindgen = ["instant/wasm-bindgen"]
+stdweb = ["instant/stdweb"]
 
 [badges]
 travis-ci = { repository = "argmin-rs/argmin", branch = "master" }
